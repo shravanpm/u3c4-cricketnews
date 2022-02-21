@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+       #container{
+        display: flex;
+      }
+
+      #sidebar{
+        display: flex;
+        flex-direction: column;
+        
+        padding: 1%;
+        flex: 2;
+        height: 500px;
+        border: 1px solid red;
+      }
+      #main{
+        flex: 8;
+        border: 1px solid;
+      }
+
+      #news{
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        gap: 10px;
+        margin: 10px;
+      }
+
+      #news > img{
+        width: 90%;
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <!--DO NOT CHANGE THIS ID's-->
+
+    <div id="container">
+      <div id="sidebar">
+        <!--add your sidebar component here-->
+      </div>
+
+      <div id="main">
+
+        
+        <!--DO NOT CHANGE THIS ID's-->
+        <!--Show the clicked article in detailed format here ONLY-->
+      </div>
+    </div>
+  </body>
+</html>
+
+<script type="module">
+  import sidebar from "./components/sidebar.js";
+  let sidebar_div = document.getElementById("sidebar");
+  sidebar_div.innerHTML = sidebar();
+
+  import { apiCall, appendArticles } from "./scripts/main.js";
+
+  let main = document.getElementById("main");
+
+  let data = JSON.parse(localStorage.getItem("article"));
+  let arr =[];
+  arr.push(data);
+  appendArticles(arr,main);
+  </script>

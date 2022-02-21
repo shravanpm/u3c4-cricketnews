@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+       #container{
+        display: flex;
+      }
+
+      #sidebar{
+        display: flex;
+        flex-direction: column;
+        
+        padding: 1%;
+        flex: 2;
+        height: 500px;
+        border: 1px solid red;
+      }
+      #main{
+        flex: 8;
+        border: 1px solid;
+      }
+      #news{
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        gap: 10px;
+        margin: 10px;
+        box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+      }
+
+
+    </style>
+  </head>
+
+  <body>
+    
+    <div id="main">
+      <!--No need to add sidebar here, directly display search results here only-->
+
+      <!-- show headline, description and image -->
+    </div>
+  </body>
+</html>
+
+<script type="module">
+ 
+
+  import { apiCall, appendArticles } from "./scripts/main.js";
+
+ let searchTerm = (localStorage.getItem("search_term"));
+  
+let searchUrl =`https://shrouded-earth-23381.herokuapp.com/api/search/?q=${searchTerm}`;
+console.log(searchUrl);
+let data = await apiCall(searchUrl);
+console.log(data);
+
+let main = document.getElementById("main");
+
+appendArticles(data,main);
+
+  </script>
+  
